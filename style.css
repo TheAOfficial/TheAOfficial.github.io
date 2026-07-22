@@ -3063,3 +3063,901 @@ body{
     }
 
 }
+/* ==========================================================
+   PART 2D - SECTION 1
+   DYNAMIC THEME & ADVANCED EFFECTS
+========================================================== */
+
+/* ==========================
+   Theme Variables
+========================== */
+
+:root{
+
+    --primary:#5b8cff;
+    --secondary:#8b5cf6;
+    --accent:#00e5ff;
+
+    --bg:#050505;
+    --card:rgba(255,255,255,.05);
+
+    --shadow:
+    0 20px 60px rgba(91,140,255,.25);
+
+}
+
+/* ==========================
+   Animated Background
+========================== */
+
+.dynamic-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    overflow:hidden;
+
+}
+
+.dynamic-bg span{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(80px);
+
+    animation:moveBlob 18s ease-in-out infinite;
+
+}
+
+.dynamic-bg span:nth-child(1){
+
+    width:350px;
+    height:350px;
+    background:rgba(91,140,255,.18);
+    top:10%;
+    left:8%;
+
+}
+
+.dynamic-bg span:nth-child(2){
+
+    width:420px;
+    height:420px;
+    background:rgba(139,92,246,.16);
+    right:10%;
+    top:20%;
+
+}
+
+.dynamic-bg span:nth-child(3){
+
+    width:300px;
+    height:300px;
+    background:rgba(0,229,255,.14);
+    bottom:10%;
+    left:40%;
+
+}
+
+/* ==========================
+   Animated Border Glow
+========================== */
+
+.glow-border{
+
+    position:relative;
+
+}
+
+.glow-border::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:inherit;
+
+    background:
+
+    linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary),
+    var(--accent),
+    var(--primary)
+    );
+
+    background-size:300%;
+
+    animation:borderMove 8s linear infinite;
+
+    z-index:-1;
+
+    filter:blur(10px);
+
+}
+
+/* ==========================
+   Floating Animation
+========================== */
+
+.float{
+
+    animation:floating 5s ease-in-out infinite;
+
+}
+
+/* ==========================
+   Keyframes
+========================== */
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes moveBlob{
+
+    0%{
+
+        transform:translate(0,0);
+
+    }
+
+    50%{
+
+        transform:translate(80px,-60px);
+
+    }
+
+    100%{
+
+        transform:translate(0,0);
+
+    }
+
+}
+
+@keyframes borderMove{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:300%;
+
+    }
+
+}
+/* ==========================================================
+   PART 2D - SECTION 2
+   MOUSE SPOTLIGHT & AMBIENT LIGHTING
+========================================================== */
+
+/* ===============================
+   Mouse Spotlight Layer
+================================ */
+
+.mouse-light{
+
+    position:fixed;
+
+    width:450px;
+
+    height:450px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    transform:translate(-50%,-50%);
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(91,140,255,.20),
+
+            rgba(91,140,255,.08),
+
+            transparent 72%
+
+        );
+
+    filter:blur(45px);
+
+    transition:
+
+        left .08s linear,
+
+        top .08s linear,
+
+        opacity .35s ease;
+
+}
+
+/* ===============================
+   Ambient Glow Layer
+================================ */
+
+.ambient-light{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-5;
+
+    opacity:.7;
+
+    background:
+
+        radial-gradient(circle at 20% 25%,
+            rgba(91,140,255,.12),
+            transparent 40%),
+
+        radial-gradient(circle at 80% 15%,
+            rgba(139,92,246,.10),
+            transparent 40%),
+
+        radial-gradient(circle at 50% 80%,
+            rgba(0,229,255,.08),
+            transparent 45%);
+
+    animation:ambientShift 20s ease-in-out infinite;
+
+}
+
+/* ===============================
+   Card Hover Lighting
+================================ */
+
+.glass-card,
+.skill-card,
+.project-card,
+.certificate-card,
+.timeline-content{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.glass-card::before,
+.skill-card::before,
+.project-card::before,
+.certificate-card::before,
+.timeline-content::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(255,255,255,.14),
+
+            transparent 70%
+
+        );
+
+    left:var(--mouse-x,50%);
+
+    top:var(--mouse-y,50%);
+
+    transform:
+
+        translate(-50%,-50%);
+
+    opacity:0;
+
+    transition:opacity .35s ease;
+
+    pointer-events:none;
+
+}
+
+.glass-card:hover::before,
+.skill-card:hover::before,
+.project-card:hover::before,
+.certificate-card:hover::before,
+.timeline-content:hover::before{
+
+    opacity:1;
+
+}
+
+/* ===============================
+   Soft Neon Shadow
+================================ */
+
+.neon-shadow{
+
+    box-shadow:
+
+        0 0 25px rgba(91,140,255,.18),
+
+        0 0 50px rgba(91,140,255,.10),
+
+        0 20px 60px rgba(0,0,0,.35);
+
+}
+
+/* ===============================
+   Glass Blur Utility
+================================ */
+
+.blur-xl{
+
+    backdrop-filter:blur(35px);
+
+    -webkit-backdrop-filter:blur(35px);
+
+}
+
+/* ===============================
+   Premium Selection
+================================ */
+
+::selection{
+
+    background:#5b8cff;
+
+    color:#ffffff;
+
+}
+
+/* ===============================
+   Keyframes
+================================ */
+
+@keyframes ambientShift{
+
+    0%{
+
+        transform:translateX(0) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateX(25px) scale(1.05);
+
+    }
+
+    100%{
+
+        transform:translateX(0) scale(1);
+
+    }
+
+}
+/* ==========================================================
+   PART 2D - SECTION 3
+   PERFORMANCE & PRODUCTION POLISH
+========================================================== */
+
+/* ===============================
+   Hardware Acceleration
+================================ */
+
+.hero,
+.about,
+.skills,
+.projects,
+.experience,
+.certificates,
+.contact,
+.footer,
+.project-card,
+.skill-card,
+.glass-card,
+.timeline-content{
+
+    transform:translateZ(0);
+
+    backface-visibility:hidden;
+
+    will-change:transform, opacity;
+
+}
+
+/* ===============================
+   Optimized Image Rendering
+================================ */
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+    height:auto;
+
+    image-rendering:auto;
+
+}
+
+/* ===============================
+   Page Fade Transition
+================================ */
+
+body{
+
+    opacity:0;
+
+    animation:pageFadeIn .8s ease forwards;
+
+}
+
+@keyframes pageFadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ===============================
+   Skeleton Loading Utility
+================================ */
+
+.loading-shimmer{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.06);
+
+}
+
+.loading-shimmer::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.25),
+
+        transparent
+
+    );
+
+    animation:shimmer 1.8s infinite;
+
+}
+
+@keyframes shimmer{
+
+    100%{
+
+        left:140%;
+
+    }
+
+}
+
+/* ===============================
+   Utility Classes
+================================ */
+
+.fade-up{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+}
+
+.fade-in{
+
+    opacity:0;
+
+}
+
+.scale-in{
+
+    opacity:0;
+
+    transform:scale(.9);
+
+}
+
+.rotate-in{
+
+    opacity:0;
+
+    transform:rotate(-8deg);
+
+}
+
+/* ===============================
+   GPU Animation Helpers
+================================ */
+
+.gpu{
+
+    transform:translate3d(0,0,0);
+
+}
+
+.no-select{
+
+    user-select:none;
+
+}
+
+.pointer{
+
+    cursor:pointer;
+
+}
+
+/* ===============================
+   Accessibility
+================================ */
+
+@media (prefers-reduced-motion: reduce){
+
+*{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
+
+}
+
+}
+
+/* ===============================
+   Print Mode
+================================ */
+
+@media print{
+
+body{
+
+    background:#ffffff;
+
+    color:#000000;
+
+}
+
+.navbar,
+.loader,
+.cursor,
+.cursor-ring,
+.mouse-light,
+.ambient-light{
+
+    display:none !important;
+
+}
+
+}
+/* ==========================================================
+   PART 2D - SECTION 4
+   FINAL MASTER POLISH
+========================================================== */
+
+/* ===============================
+   Premium Glass Utilities
+================================ */
+
+.glass-ultra{
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.08);
+
+}
+
+/* ===============================
+   Gradient Text Utility
+================================ */
+
+.gradient-text{
+
+    background:linear-gradient(
+
+        90deg,
+
+        #5b8cff,
+
+        #8b5cf6,
+
+        #00e5ff
+
+    );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:gradientFlow 8s linear infinite;
+
+}
+
+/* ===============================
+   Neon Border
+================================ */
+
+.neon-border{
+
+    border:1px solid rgba(91,140,255,.35);
+
+    box-shadow:
+
+        inset 0 0 20px rgba(91,140,255,.08),
+
+        0 0 25px rgba(91,140,255,.15);
+
+}
+
+/* ===============================
+   Hover Glow
+================================ */
+
+.hover-glow{
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease,
+
+        filter .35s ease;
+
+}
+
+.hover-glow:hover{
+
+    transform:translateY(-8px);
+
+    filter:brightness(1.05);
+
+    box-shadow:
+
+        0 20px 55px rgba(91,140,255,.25),
+
+        0 0 40px rgba(139,92,246,.15);
+
+}
+
+/* ===============================
+   Animated Divider
+================================ */
+
+.divider{
+
+    width:180px;
+
+    height:3px;
+
+    margin:30px auto;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        #5b8cff,
+
+        #8b5cf6,
+
+        #00e5ff,
+
+        transparent
+
+    );
+
+    background-size:250%;
+
+    animation:dividerMove 6s linear infinite;
+
+}
+
+/* ===============================
+   Premium Badge
+================================ */
+
+.premium-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 22px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+}
+
+/* ===============================
+   Scroll To Top Button
+================================ */
+
+.scroll-top{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(
+        135deg,
+        #5b8cff,
+        #8b5cf6
+    );
+
+    color:#fff;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    box-shadow:
+
+        0 15px 45px rgba(91,140,255,.35);
+
+}
+
+.scroll-top.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.scroll-top:hover{
+
+    transform:translateY(-6px) scale(1.05);
+
+}
+
+/* ===============================
+   Keyframes
+================================ */
+
+@keyframes gradientFlow{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:300%;
+
+    }
+
+}
+
+@keyframes dividerMove{
+
+    from{
+
+        background-position:0%;
+
+    }
+
+    to{
+
+        background-position:250%;
+
+    }
+
+}
