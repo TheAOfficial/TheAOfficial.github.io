@@ -1984,4 +1984,1082 @@ flex-direction:column;
 }
 
 }
-    
+    /* ==========================================================
+   PART 2C - SECTION 1
+   PREMIUM EFFECTS
+========================================================== */
+
+/* ===============================
+   Global Glow Background
+================================ */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-3;
+
+    background:
+
+        radial-gradient(circle at 15% 20%,
+        rgba(91,140,255,.18),
+        transparent 32%),
+
+        radial-gradient(circle at 85% 10%,
+        rgba(139,92,246,.18),
+        transparent 30%),
+
+        radial-gradient(circle at 50% 90%,
+        rgba(0,229,255,.15),
+        transparent 35%);
+
+    filter:blur(80px);
+
+    animation:backgroundMove 18s linear infinite alternate;
+
+}
+
+/* ===============================
+   Aurora Layer
+================================ */
+
+.aurora{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+    opacity:.55;
+
+    background:
+
+    linear-gradient(
+
+        120deg,
+
+        rgba(91,140,255,.10),
+
+        transparent,
+
+        rgba(139,92,246,.08),
+
+        transparent,
+
+        rgba(0,229,255,.08)
+
+    );
+
+    filter:blur(120px);
+
+    animation:auroraMove 16s ease-in-out infinite;
+
+}
+
+/* ===============================
+   Glass Reflection
+================================ */
+
+.glass-card::after,
+.skill-card::after,
+.project-card::after,
+.timeline-content::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        110deg,
+
+        transparent 20%,
+
+        rgba(255,255,255,.08) 45%,
+
+        rgba(255,255,255,.18) 50%,
+
+        rgba(255,255,255,.08) 55%,
+
+        transparent 80%
+
+    );
+
+    transform:translateX(-150%);
+
+    transition:1s;
+
+    pointer-events:none;
+
+}
+
+.glass-card:hover::after,
+.skill-card:hover::after,
+.project-card:hover::after,
+.timeline-content:hover::after{
+
+    transform:translateX(150%);
+
+}
+
+/* ===============================
+   Floating Glow Circles
+================================ */
+
+.glow-circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    animation:floatGlow 10s ease-in-out infinite;
+
+}
+
+.glow-blue{
+
+    width:300px;
+
+    height:300px;
+
+    background:rgba(91,140,255,.22);
+
+}
+
+.glow-purple{
+
+    width:260px;
+
+    height:260px;
+
+    background:rgba(139,92,246,.22);
+
+}
+
+.glow-cyan{
+
+    width:220px;
+
+    height:220px;
+
+    background:rgba(0,229,255,.18);
+
+}
+
+/* ===============================
+   Animations
+================================ */
+
+@keyframes backgroundMove{
+
+    from{
+
+        transform:translateX(-4%) translateY(-2%);
+
+    }
+
+    to{
+
+        transform:translateX(4%) translateY(2%);
+
+    }
+
+}
+
+@keyframes auroraMove{
+
+    0%{
+
+        transform:rotate(0deg) scale(1);
+
+    }
+
+    50%{
+
+        transform:rotate(6deg) scale(1.08);
+
+    }
+
+    100%{
+
+        transform:rotate(-6deg) scale(1);
+
+    }
+
+}
+
+@keyframes floatGlow{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-35px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================================
+   PART 2C - SECTION 2
+   PREMIUM CURSOR & MICRO INTERACTIONS
+========================================================== */
+
+/* ==========================
+   Custom Cursor
+========================== */
+
+.cursor{
+
+    position:fixed;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#5b8cff;
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:99999;
+
+    transition:
+
+        transform .15s ease,
+
+        width .25s ease,
+
+        height .25s ease,
+
+        background .25s ease;
+
+    box-shadow:
+
+        0 0 15px rgba(91,140,255,.7),
+
+        0 0 35px rgba(91,140,255,.5);
+
+}
+
+.cursor-ring{
+
+    position:fixed;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(91,140,255,.55);
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:99998;
+
+    transition:
+
+        transform .25s ease,
+
+        width .3s ease,
+
+        height .3s ease;
+
+}
+
+/* ==========================
+   Hover States
+========================== */
+
+a:hover ~ .cursor,
+button:hover ~ .cursor{
+
+    width:28px;
+
+    height:28px;
+
+    background:#8b5cf6;
+
+}
+
+a:hover ~ .cursor-ring,
+button:hover ~ .cursor-ring{
+
+    width:70px;
+
+    height:70px;
+
+}
+
+/* ==========================
+   Magnetic Hover
+========================== */
+
+.magnetic{
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease;
+
+}
+
+.magnetic:hover{
+
+    transform:translateY(-8px) scale(1.03);
+
+    box-shadow:
+
+        0 15px 40px rgba(91,140,255,.30);
+
+}
+
+/* ==========================
+   Card Hover
+========================== */
+
+.glass-card,
+.skill-card,
+.project-card,
+.achievement-card,
+.certificate-card{
+
+    will-change:transform;
+
+}
+
+.glass-card:hover,
+.skill-card:hover,
+.project-card:hover,
+.achievement-card:hover,
+.certificate-card:hover{
+
+    transform:
+
+        translateY(-10px)
+
+        rotateX(2deg)
+
+        rotateY(-2deg);
+
+}
+
+/* ==========================
+   Smooth Images
+========================== */
+
+img{
+
+    transition:
+
+        transform .45s ease,
+
+        filter .45s ease;
+
+}
+
+img:hover{
+
+    filter:brightness(1.08);
+
+}
+
+/* ==========================
+   Button Animation
+========================== */
+
+.btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.35),
+
+        transparent
+
+    );
+
+    transition:.7s;
+
+}
+
+.btn:hover::before{
+
+    left:120%;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* ==========================
+   Section Fade
+========================== */
+
+section{
+
+    transition:
+
+        opacity .5s ease,
+
+        transform .5s ease;
+
+}
+/* ==========================================================
+   PART 2C - SECTION 3
+   PARTICLES • NOISE • PREMIUM MOTION
+========================================================== */
+
+/* ===============================
+   Particle Layer
+================================ */
+
+#particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:-4;
+
+}
+
+.particle{
+
+    position:absolute;
+
+    width:4px;
+
+    height:4px;
+
+    border-radius:50%;
+
+    background:#8ab4ff;
+
+    opacity:.45;
+
+    box-shadow:
+
+        0 0 10px rgba(91,140,255,.7);
+
+    animation:particleFloat linear infinite;
+
+}
+
+/* ===============================
+   Floating Shapes
+================================ */
+
+.floating-shape{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    animation:shapeFloat 12s ease-in-out infinite;
+
+}
+
+.shape-one{
+
+    width:140px;
+
+    height:140px;
+
+}
+
+.shape-two{
+
+    width:220px;
+
+    height:220px;
+
+}
+
+.shape-three{
+
+    width:90px;
+
+    height:90px;
+
+}
+
+/* ===============================
+   Glass Noise Texture
+================================ */
+
+.noise-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.05;
+
+    z-index:999;
+
+    background-image:
+
+        radial-gradient(circle, #ffffff 1px, transparent 1px);
+
+    background-size:8px 8px;
+
+    mix-blend-mode:overlay;
+
+}
+
+/* ===============================
+   Scroll Reveal Ready State
+================================ */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ===============================
+   Floating Icons
+================================ */
+
+.tech-icon{
+
+    position:absolute;
+
+    opacity:.18;
+
+    font-size:36px;
+
+    animation:iconFloat 9s ease-in-out infinite;
+
+}
+
+/* ===============================
+   Section Glow
+================================ */
+
+section{
+
+    position:relative;
+
+}
+
+section::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    transform:translateX(-50%);
+
+    width:70%;
+
+    height:1px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent,
+
+            rgba(91,140,255,.35),
+
+            transparent
+
+        );
+
+}
+
+/* ===============================
+   Keyframes
+================================ */
+
+@keyframes particleFloat{
+
+    from{
+
+        transform:
+
+            translateY(110vh)
+
+            scale(.4);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:.45;
+
+    }
+
+    to{
+
+        transform:
+
+            translateY(-20vh)
+
+            scale(1);
+
+        opacity:0;
+
+    }
+
+}
+
+@keyframes shapeFloat{
+
+    0%{
+
+        transform:
+
+            translateY(0)
+
+            rotate(0deg);
+
+    }
+
+    50%{
+
+        transform:
+
+            translateY(-35px)
+
+            rotate(180deg);
+
+    }
+
+    100%{
+
+        transform:
+
+            translateY(0)
+
+            rotate(360deg);
+
+    }
+
+}
+
+@keyframes iconFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-20px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================================
+   PART 2C - SECTION 4
+   FINAL PREMIUM UI EFFECTS
+========================================================== */
+
+/* ===============================
+   Animated Gradient Border
+================================ */
+
+.gradient-border{
+
+    position:relative;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+}
+
+.gradient-border::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:inherit;
+
+    background:linear-gradient(
+        45deg,
+        #5b8cff,
+        #8b5cf6,
+        #00e5ff,
+        #5b8cff
+    );
+
+    background-size:300% 300%;
+
+    animation:borderFlow 8s linear infinite;
+
+    z-index:-2;
+
+}
+
+.gradient-border::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:2px;
+
+    border-radius:inherit;
+
+    background:#0b0f17;
+
+    z-index:-1;
+
+}
+
+/* ===============================
+   Glass Highlight
+================================ */
+
+.glass-highlight{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.glass-highlight::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120%;
+
+    left:-40%;
+
+    width:60%;
+
+    height:300%;
+
+    background:linear-gradient(
+
+        transparent,
+
+        rgba(255,255,255,.14),
+
+        transparent
+
+    );
+
+    transform:rotate(25deg);
+
+    transition:1s;
+
+}
+
+.glass-highlight:hover::before{
+
+    left:130%;
+
+}
+
+/* ===============================
+   Soft Hover Scale
+================================ */
+
+.hover-lift{
+
+    transition:
+
+        transform .35s ease,
+
+        box-shadow .35s ease,
+
+        filter .35s ease;
+
+}
+
+.hover-lift:hover{
+
+    transform:
+
+        translateY(-8px)
+
+        scale(1.02);
+
+    filter:brightness(1.05);
+
+    box-shadow:
+
+        0 20px 50px rgba(91,140,255,.22);
+
+}
+
+/* ===============================
+   Smooth Scrolling
+================================ */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ===============================
+   Better Focus States
+================================ */
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus{
+
+    outline:none;
+
+    box-shadow:
+
+        0 0 0 3px rgba(91,140,255,.35);
+
+}
+
+/* ===============================
+   Responsive Improvements
+================================ */
+
+@media (max-width:1200px){
+
+.hero,
+.about-wrapper,
+.contact-wrapper{
+
+    gap:50px;
+
+}
+
+}
+
+@media (max-width:992px){
+
+.section-header h2{
+
+    font-size:44px;
+
+}
+
+.hero-title{
+
+    font-size:56px;
+
+}
+
+.projects-grid,
+.skills-grid,
+.certificate-grid,
+.achievement-grid{
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+}
+
+}
+
+@media (max-width:768px){
+
+body{
+
+    overflow-x:hidden;
+
+}
+
+.hero{
+
+    padding-top:120px;
+
+}
+
+.hero-title{
+
+    font-size:42px;
+
+}
+
+.section-header h2{
+
+    font-size:36px;
+
+}
+
+.image-frame{
+
+    width:320px;
+
+    height:400px;
+
+}
+
+.hero-buttons,
+.about-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.hero-title{
+
+    font-size:34px;
+
+}
+
+.section-header h2{
+
+    font-size:30px;
+
+}
+
+.btn{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.image-frame{
+
+    width:260px;
+
+    height:330px;
+
+}
+
+}
+
+/* ===============================
+   Animations
+================================ */
+
+@keyframes borderFlow{
+
+    0%{
+
+        background-position:0% 50%;
+
+    }
+
+    50%{
+
+        background-position:100% 50%;
+
+    }
+
+    100%{
+
+        background-position:0% 50%;
+
+    }
+
+}
