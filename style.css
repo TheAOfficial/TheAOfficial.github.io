@@ -1,0 +1,787 @@
+/* =======================================================
+   RESET
+======================================================= */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Outfit",sans-serif;
+    background:#050505;
+    color:#ffffff;
+    overflow-x:hidden;
+    line-height:1.6;
+}
+
+/* =======================================================
+   ROOT VARIABLES
+======================================================= */
+
+:root{
+
+    --bg:#050505;
+    --surface:#101010;
+    --surface-2:#181818;
+
+    --text:#ffffff;
+    --text-soft:#c9c9c9;
+
+    --primary:#5b8cff;
+    --secondary:#8b5cf6;
+    --accent:#00e5ff;
+
+    --glass:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.12);
+
+    --radius:24px;
+
+    --shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+}
+
+/* =======================================================
+   SCROLLBAR
+======================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#090909;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+    #5b8cff,
+    #8b5cf6);
+    border-radius:999px;
+}
+
+/* =======================================================
+   CONTAINER
+======================================================= */
+
+.container{
+
+    width:min(1280px,92%);
+    margin:auto;
+
+}
+
+/* =======================================================
+   IMAGES
+======================================================= */
+
+img{
+
+    display:block;
+    max-width:100%;
+
+}
+
+/* =======================================================
+   LINKS
+======================================================= */
+
+a{
+
+    text-decoration:none;
+    color:inherit;
+
+}
+
+/* =======================================================
+   BUTTONS
+======================================================= */
+
+.btn-primary{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.4s;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.btn-secondary{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    border:1px solid var(--border);
+
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
+
+    transition:.4s;
+
+}
+
+.btn-secondary:hover{
+
+    transform:translateY(-4px);
+
+}
+/* =======================================================
+   LOADER
+======================================================= */
+
+#loader{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:#000;
+
+    z-index:99999;
+
+    overflow:hidden;
+
+}
+
+.loader-logo{
+
+    font-size:120px;
+
+    font-weight:800;
+
+    letter-spacing:6px;
+
+    color:#ffffff;
+
+    text-shadow:
+    0 0 20px rgba(255,255,255,.4),
+    0 0 60px rgba(91,140,255,.6);
+
+    animation:
+    logoPulse 2s infinite ease-in-out;
+
+}
+
+.loader-text{
+
+    margin-top:24px;
+
+    color:#bdbdbd;
+
+    font-size:15px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+.loader-bar{
+
+    width:320px;
+
+    height:6px;
+
+    margin-top:35px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.loader-bar span{
+
+    display:block;
+
+    width:0;
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+    90deg,
+    #5b8cff,
+    #8b5cf6,
+    #00e5ff);
+
+}
+
+/* =======================================
+   Loader Background Glow
+======================================= */
+
+#loader::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(91,140,255,.25),
+    transparent 70%);
+
+    filter:blur(60px);
+
+    animation:
+    loaderGlow 5s infinite alternate;
+
+}
+
+/* =======================================
+   Keyframes
+======================================= */
+@keyframes logoPulse{
+
+    0%{
+
+        transform:scale(1);
+        opacity:1;
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+        opacity:.85;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+        opacity:1;
+
+    }
+
+}
+
+@keyframes loaderGlow{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.35);
+
+    }
+
+}
+/* =======================================================
+   NAVBAR
+======================================================= */
+
+#header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    z-index:1000;
+
+    padding:20px 0;
+
+    transition:.4s ease;
+
+}
+
+.navbar{
+
+    width:min(1280px,92%);
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:16px 28px;
+
+    border-radius:100px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.35);
+
+}
+
+/* ============================= */
+
+.logo{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    letter-spacing:3px;
+
+}
+
+.logo span{
+
+    background:linear-gradient(
+    135deg,
+    #5b8cff,
+    #8b5cf6,
+    #00e5ff);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+/* ============================= */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:34px;
+
+    list-style:none;
+
+}
+
+.nav-links a{
+
+    color:#d9d9d9;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+/* Hover Underline */
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    border-radius:999px;
+
+    background:#5b8cff;
+
+    transition:.35s;
+
+}
+
+.nav-links a:hover{
+
+    color:#fff;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+/* ============================= */
+
+.hire-btn{
+
+    padding:14px 28px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+    135deg,
+    #5b8cff,
+    #8b5cf6);
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    box-shadow:
+    0 0 25px rgba(91,140,255,.35);
+
+}
+
+.hire-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 35px rgba(91,140,255,.55);
+
+}
+
+/* ============================= */
+
+@media (max-width:900px){
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+}
+/* =======================================================
+   HERO SECTION
+======================================================= */
+
+.hero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    gap:80px;
+
+    padding:140px 8% 80px;
+
+    overflow:hidden;
+
+}
+
+/* =======================================
+   Hero Left
+======================================= */
+
+.hero-content{
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.hero-tag{
+
+    display:inline-flex;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    color:#8ab4ff;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    margin-bottom:28px;
+
+}
+
+.hero-content h1{
+
+    font-size:clamp(55px,7vw,110px);
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    color:#fff;
+
+    margin-bottom:28px;
+
+}
+
+.hero-content h1 span{
+
+    background:linear-gradient(
+    135deg,
+    #5b8cff,
+    #8b5cf6,
+    #00e5ff);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.hero-content p{
+
+    max-width:620px;
+
+    color:#bdbdbd;
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+/* =======================================
+   Buttons
+======================================= */
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+/* =======================================================
+   HERO IMAGE
+======================================================= */
+
+.hero-image{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5;
+
+}
+
+/* =======================================
+   Profile Image
+======================================= */
+
+.profile-image{
+
+    width:430px;
+
+    max-width:90%;
+
+    border-radius:30px;
+
+    object-fit:cover;
+
+    position:relative;
+
+    z-index:5;
+
+    opacity:0;
+
+    transform:translateY(700px);
+
+    filter:drop-shadow(
+        0 40px 80px
+        rgba(0,0,0,.45)
+    );
+
+}
+
+/* =======================================
+   Glow
+======================================= */
+
+.hero-glow{
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(91,140,255,.35),
+    transparent 70%);
+
+    filter:blur(70px);
+
+    z-index:1;
+
+}
+
+/* =======================================
+   Rotating Rings
+======================================= */
+
+.ring{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:1px solid
+    rgba(255,255,255,.12);
+
+    animation:
+    rotateRing linear infinite;
+
+}
+
+.ring1{
+
+    width:420px;
+    height:420px;
+
+    animation-duration:18s;
+
+}
+
+.ring2{
+
+    width:520px;
+    height:520px;
+
+    animation-duration:26s;
+
+    animation-direction:reverse;
+
+}
+
+.ring3{
+
+    width:620px;
+    height:620px;
+
+    animation-duration:35s;
+
+}
+
+/* =======================================
+   Floating Animation
+======================================= */
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =======================================
+   Ring Rotation
+======================================= */
+
+@keyframes rotateRing{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
