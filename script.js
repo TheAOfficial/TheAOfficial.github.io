@@ -491,3 +491,245 @@ function animateSpace(){
 }
 
 animateSpace();
+/* ==========================================================
+   PART 3A - SECTION 4
+   GLTF 3D Model
+========================================================== */
+
+const loader3D = new THREE.GLTFLoader();
+
+let aiModel = null;
+
+loader3D.load(
+
+    "assets/models/ai.glb",
+
+    function(gltf){
+
+        aiModel = gltf.scene;
+
+        aiModel.scale.set(3,3,3);
+
+        aiModel.position.set(0,-5,0);
+
+        aiModel.rotation.y = Math.PI;
+
+        scene.add(aiModel);
+
+    },
+
+    function(xhr){
+
+        console.log(
+            (xhr.loaded / xhr.total * 100) + "% Loaded"
+        );
+
+    },
+
+    function(error){
+
+        console.error(error);
+
+    }
+
+);
+
+/* ==========================================
+   Mouse Rotation
+========================================== */
+
+window.addEventListener("mousemove",(e)=>{
+
+    if(!aiModel) return;
+
+    const x = (e.clientX/window.innerWidth)-0.5;
+    const y = (e.clientY/window.innerHeight)-0.5;
+
+    gsap.to(aiModel.rotation,{
+
+        y:x*0.8,
+
+        x:-y*0.3,
+
+        duration:1
+
+    });
+
+});
+
+/* ==========================================
+   Floating Animation
+========================================== */
+
+function animateModel(){
+
+    requestAnimationFrame(animateModel);
+
+    if(aiModel){
+
+        aiModel.position.y =
+            Math.sin(Date.now()*0.001)*0.3 - 5;
+
+    }
+
+}
+
+animateModel();
+/* ==========================================================
+   PART 3A - SECTION 5
+   Camera • Energy • Hero Effects
+========================================================== */
+
+/* ==========================================
+   Energy Particles
+========================================== */
+
+const particles = [];
+
+for(let i = 0; i < 150; i++){
+
+    const geometry = new THREE.SphereGeometry(0.03,8,8);
+
+    const material = new THREE.MeshBasicMaterial({
+
+        color:0x5b8cff
+
+    });
+
+    const particle = new THREE.Mesh(
+
+        geometry,
+
+        material
+
+    );
+
+    particle.position.set(
+
+        (Math.random()-0.5)*40,
+
+        (Math.random()-0.5)*30,
+
+        (Math.random()-0.5)*40
+
+    );
+
+    scene.add(particle);
+
+    particles.push(particle);
+
+}
+
+/* ==========================================
+   Floating Energy
+========================================== */
+
+function animateParticles(){
+
+    particles.forEach(p=>{
+
+        p.position.y += 0.01;
+
+        if(p.position.y>15){
+
+            p.position.y=-15;
+
+        }
+
+        p.rotation.x+=0.01;
+
+        p.rotation.y+=0.01;
+
+    });
+
+}
+
+/* ==========================================
+   Camera Movement
+========================================== */
+
+function animateCamera(){
+
+    camera.position.x +=
+
+    (mouseX*4-camera.position.x)
+
+    *0.02;
+
+    camera.position.y +=
+
+    (-mouseY*3-camera.position.y)
+
+    *0.02;
+
+}
+
+/* ==========================================
+   Main Render Loop
+========================================== */
+
+function renderScene(){
+
+    requestAnimationFrame(renderScene);
+
+    animateParticles();
+
+    animateCamera();
+
+    renderer.render(scene,camera);
+
+}
+
+renderScene();
+
+/* ==========================================
+   Hero Reveal
+========================================== */
+
+gsap.from(".hero",{
+
+    opacity:0,
+
+    duration:1.2,
+
+    delay:3,
+
+    ease:"power3.out"
+
+});
+
+gsap.from(".hero-content h1",{
+
+    y:80,
+
+    opacity:0,
+
+    duration:1,
+
+    delay:3.2
+
+});
+
+gsap.from(".hero-content p",{
+
+    y:60,
+
+    opacity:0,
+
+    duration:1,
+
+    delay:3.4
+
+});
+
+gsap.from(".hero-buttons",{
+
+    y:40,
+
+    opacity:0,
+
+    duration:1,
+
+    delay:3.6
+
+});
