@@ -3961,3 +3961,608 @@ body{
     }
 
 }
+/* ==========================================================
+   PART 2E - SECTION 1
+   ULTRA PREMIUM FINISHING EFFECTS
+========================================================== */
+
+/* ===============================
+   Premium Section Spacing
+================================ */
+
+section{
+
+    padding:140px 8%;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* ===============================
+   Animated Background Grid
+================================ */
+
+.grid-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-8;
+
+    opacity:.08;
+
+    background-image:
+
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+
+    background-size:50px 50px;
+
+}
+
+/* ===============================
+   Glass Border Utility
+================================ */
+
+.glass-border{
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.04);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:24px;
+
+}
+
+/* ===============================
+   Premium Shadow
+================================ */
+
+.shadow-xl{
+
+    box-shadow:
+
+        0 20px 80px rgba(0,0,0,.45),
+
+        0 0 60px rgba(91,140,255,.12);
+
+}
+
+/* ===============================
+   Floating Animation
+================================ */
+
+.float-slow{
+
+    animation:floatSlow 8s ease-in-out infinite;
+
+}
+
+.float-fast{
+
+    animation:floatFast 4s ease-in-out infinite;
+
+}
+
+/* ===============================
+   Keyframes
+================================ */
+
+@keyframes floatSlow{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes floatFast{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================================
+   PART 2E - SECTION 2
+   LUXURY TEXT • BUTTONS • HOVER EFFECTS
+========================================================== */
+
+/* ===============================
+   Animated Gradient Text
+================================ */
+
+.text-gradient{
+
+    background:linear-gradient(
+        90deg,
+        #5b8cff,
+        #8b5cf6,
+        #00e5ff,
+        #5b8cff
+    );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    animation:textFlow 6s linear infinite;
+
+}
+
+/* ===============================
+   Premium Buttons
+================================ */
+
+.btn-premium{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:16px 36px;
+
+    border-radius:999px;
+
+    border:none;
+
+    color:#ffffff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #5b8cff,
+        #8b5cf6
+    );
+
+    transition:.35s;
+
+}
+
+.btn-premium:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 20px 45px rgba(91,140,255,.35);
+
+}
+
+.btn-premium::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.35),
+
+        transparent
+
+    );
+   /* ==========================================================
+   PART 2E - SECTION 3
+   ULTRA PREMIUM BACKGROUND & AI EFFECTS
+========================================================== */
+
+/* ===============================
+   AI Neon Background
+================================ */
+
+.ai-background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-12;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+}
+
+.ai-background::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(circle at 20% 30%,
+        rgba(91,140,255,.18),
+        transparent 35%),
+
+        radial-gradient(circle at 80% 20%,
+        rgba(139,92,246,.15),
+        transparent 35%),
+
+        radial-gradient(circle at 50% 85%,
+        rgba(0,229,255,.12),
+        transparent 40%);
+
+    filter:blur(90px);
+
+    animation:aiGlow 18s ease-in-out infinite alternate;
+
+}
+
+/* ===============================
+   Premium Grid Lines
+================================ */
+
+.grid-lines{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.04;
+
+    background-image:
+
+        linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+
+    background-size:60px 60px;
+
+}
+
+/* ===============================
+   Neon Glow Utility
+================================ */
+
+.neon-glow{
+
+    box-shadow:
+
+        0 0 20px rgba(91,140,255,.25),
+
+        0 0 40px rgba(139,92,246,.18),
+
+        0 0 60px rgba(0,229,255,.15);
+
+}
+
+/* ===============================
+   Glass Panel
+================================ */
+
+.glass-panel{
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    border-radius:28px;
+
+}
+
+/* ===============================
+   Pulse Animation
+================================ */
+
+.pulse{
+
+    animation:pulseGlow 3s ease-in-out infinite;
+
+}
+
+/* ===============================
+   Keyframes
+================================ */
+
+@keyframes aiGlow{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes pulseGlow{
+
+    0%{
+
+        box-shadow:0 0 15px rgba(91,140,255,.20);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 35px rgba(91,140,255,.35),
+            0 0 60px rgba(139,92,246,.20);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 15px rgba(91,140,255,.20);
+
+    }
+
+}
+   /* ==========================================================
+   PART 2E - SECTION 4
+   FINAL ULTIMATE PRODUCTION POLISH
+========================================================== */
+
+/* ===============================
+   Universal Smooth Transition
+================================ */
+
+*{
+
+    transition:
+        color .25s ease,
+        background-color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+}
+
+/* ===============================
+   Premium Container
+================================ */
+
+.container{
+
+    width:min(1200px,92%);
+
+    margin-inline:auto;
+
+}
+
+/* ===============================
+   Section Header
+================================ */
+
+.section-title{
+
+    font-size:clamp(2.5rem,5vw,4.5rem);
+
+    font-weight:800;
+
+    line-height:1.1;
+
+    letter-spacing:-2px;
+
+}
+
+.section-subtitle{
+
+    margin-top:20px;
+
+    color:#b8b8b8;
+
+    line-height:1.8;
+
+    max-width:700px;
+
+}
+
+/* ===============================
+   Glass Navigation Blur
+================================ */
+
+.navbar{
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+    background:rgba(10,10,18,.55);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ===============================
+   Image Quality
+================================ */
+
+img{
+
+    user-select:none;
+
+    -webkit-user-drag:none;
+
+}
+
+/* ===============================
+   Hide Overflow
+================================ */
+
+body{
+
+    overflow-x:hidden;
+
+}
+
+/* ===============================
+   Responsive Utilities
+================================ */
+
+.hide-mobile{
+
+    display:block;
+
+}
+
+.show-mobile{
+
+    display:none;
+
+}
+
+@media(max-width:768px){
+
+.hide-mobile{
+
+    display:none;
+
+}
+
+.show-mobile{
+
+    display:block;
+
+}
+
+}
+
+/* ===============================
+   Premium Scrollbar
+================================ */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#070707;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        #5b8cff,
+        #8b5cf6
+    );
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        #8b5cf6,
+        #00e5ff
+    );
+
+}
+
+/* ===============================
+   Final Utility
+   .text-center{
+
+    text-align:center;
+
+}
+
+.rounded{
+
+    border-radius:20px;
+
+}
+
+.shadow{
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.visible{
+
+    display:block;
+
+}
