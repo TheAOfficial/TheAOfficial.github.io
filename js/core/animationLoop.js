@@ -18,7 +18,7 @@ import { updateScroll } from "../scroll.js";
 const clock = new THREE.Clock();
 
 export function startAnimationLoop() {
-
+createEnvironment();
     function render() {
 
         requestAnimationFrame(render);
@@ -34,6 +34,7 @@ export function startAnimationLoop() {
         animateLogo(time);
         animateAvatar(time);
 
+        animateEnvironment(time);
         if (composer) {
             composer.render(delta);
         } else {
