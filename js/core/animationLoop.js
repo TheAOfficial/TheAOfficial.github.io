@@ -2,7 +2,10 @@
 // animationLoop.js
 // Master Render Loop
 // ==========================================
-
+import {
+    createEnvironment,
+    animateEnvironment
+} from "../world/environment.js";
 import { renderer, scene, camera } from "./scene.js";
 import { composer } from "../effects/postprocessing.js";
 
